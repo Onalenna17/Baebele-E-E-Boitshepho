@@ -1,0 +1,160 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with study streak counter and goals",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The Firebase Auth user ID"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "currentStreak": {
+          "type": "integer",
+          "description": "Current consecutive days read"
+        },
+        "longestStreak": {
+          "type": "integer",
+          "description": "Longest consecutive days streak"
+        },
+        "lastActiveDate": {
+          "type": "string",
+          "description": "YYYY-MM-DD formatted last active date"
+        },
+        "dailyGoalVerses": {
+          "type": "integer",
+          "description": "Daily target verses count"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp via serverTimestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp via serverTimestamp"
+        }
+      },
+      "required": ["userId", "displayName", "currentStreak", "longestStreak", "lastActiveDate", "dailyGoalVerses", "createdAt", "updatedAt"]
+    },
+    "Bookmark": {
+      "title": "Bookmark",
+      "description": "Saved Bible verse bookmark or highlight",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The user UID"
+        },
+        "bookId": {
+          "type": "string",
+          "description": "Book identifier code (e.g. gen, jhn)"
+        },
+        "bookNameSetswana": {
+          "type": "string",
+          "description": "Setswana book title"
+        },
+        "bookNameEnglish": {
+          "type": "string",
+          "description": "English book title"
+        },
+        "chapter": {
+          "type": "integer",
+          "description": "Chapter number"
+        },
+        "verse": {
+          "type": "integer",
+          "description": "Verse number"
+        },
+        "textSetswana": {
+          "type": "string",
+          "description": "Verse text in Setswana"
+        },
+        "textEnglish": {
+          "type": "string",
+          "description": "Verse text in English"
+        },
+        "tagColor": {
+          "type": "string",
+          "description": "Highlight color tag"
+        },
+        "note": {
+          "type": "string",
+          "description": "Personal reflection or note"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Update timestamp"
+        }
+      },
+      "required": ["userId", "bookId", "bookNameSetswana", "bookNameEnglish", "chapter", "verse", "textSetswana", "textEnglish", "tagColor", "createdAt", "updatedAt"]
+    },
+    "ReadingPlan": {
+      "title": "ReadingPlan",
+      "description": "Reading plan progress tracking",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The user UID"
+        },
+        "planType": {
+          "type": "string",
+          "description": "Identifier of reading plan"
+        },
+        "dayCompletedCount": {
+          "type": "integer",
+          "description": "Number of days completed"
+        },
+        "totalDays": {
+          "type": "integer",
+          "description": "Total days in plan"
+        },
+        "completedDayIndexes": {
+          "type": "array",
+          "description": "List of completed day indices"
+        },
+        "lastReadDate": {
+          "type": "string",
+          "description": "Date of last completed plan day"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Update timestamp"
+        }
+      },
+      "required": ["userId", "planType", "dayCompletedCount", "totalDays", "completedDayIndexes", "lastReadDate", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile with streak counters and daily study goals"
+    },
+    "/users/{userId}/bookmarks/{bookmarkId}": {
+      "schema": "Bookmark",
+      "description": "Saved favorite verses, highlights, and notes"
+    },
+    "/users/{userId}/reading_plans/{planId}": {
+      "schema": "ReadingPlan",
+      "description": "Reading plan study progress per user"
+    }
+  }
+}

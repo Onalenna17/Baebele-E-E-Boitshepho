@@ -1,0 +1,6 @@
+{
+  "name": "Baebele",
+  "description": "Setswana and English verse-by-verse Holy Bible (Baebele e e Boitshepo) with audio voice reading, highlighting, verse preview, search, bookmarks, study streak, and cloud sync.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
